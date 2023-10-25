@@ -51,12 +51,24 @@ models = [
 ]
 
 # Training and evaluating each model
+
+# Initialize an empty list to store model results
+all_model_results = []
+
 for name, model in models:
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     model.fit(train_pad, training_labels, validation_data=(test_pad, test_labels), epochs=30, batch_size=32, verbose=0)
     loss, accuracy = model.evaluate(test_pad, test_labels, verbose=0)
-    model_results=accuracy*100
-    print(f"Model {name} - Test Accuracy: {accuracy*100:.2f}%")
+    model_results = accuracy * 100
+    all_model_results.append({"name": name, "accuracy": model_results})
+    print(f"Model {name} - Test Accuracy: {accuracy * 100:.2f}%")
 
+# Save all_model_results using pickle
+with open('all_model_results.pkl', 'wb') as file:
+    pickle.dump(all_model_results, file)
+
+# Write all model results to a JSON file
 with open("model_results.json", 'w') as outfile:
-    json.dump(model_results, outfile)
+    json.dump(all_model_results, outfile)
+
+print("Model results saved in model_results.json.")
