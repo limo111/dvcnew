@@ -1,0 +1,34 @@
+stages:
+  get_data:
+    cmd: python getting_data1.py
+    deps:
+    - getting_data1.py
+    outs:
+    - labels.pkl
+    - sentences.pkl
+    - url.pkl
+  process:
+    cmd: python preprocessing1.py
+    deps:
+    - preprocessing1.py
+    - labels.pkl
+    - sentences.pkl
+    - url.pkl
+    outs:
+    - training_labels.pkl
+    - test_labels.pkl
+    - train_pad.pkl
+    - test_pad.pkl
+  train:
+    cmd: python model.py
+    deps:
+    - model.py
+    - training_labels.pkl
+    - test_labels.pkl
+    - train_pad.pkl
+    - test_pad.pkl
+    outs:
+    - all_model_results.pkl
+    metrics:
+    - model_results.json:
+        cache: false
