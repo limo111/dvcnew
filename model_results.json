@@ -1,0 +1,1 @@
+[{"name": "MLP", "accuracy": 56.774479150772095}, {"name": "CNN", "accuracy": 78.28290462493896}, {"name": "LSTM", "accuracy": 80.6826651096344}, {"name": "GlobalAveragePooling1D", "accuracy": 81.51736259460449}]
