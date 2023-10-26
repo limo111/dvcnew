@@ -1,4 +1,0 @@
-[core]
-    remote = dvcnew
-['remote "dvcnew"']
-    url = /Users/arvindramesh/Downloads/dvcnew
