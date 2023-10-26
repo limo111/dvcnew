@@ -1,4 +1,5 @@
 [core]
     remote = dvcnew
+    autostage = true
 ['remote "dvcnew"']
     url = /Users/arvindramesh/Downloads/dvcnew
