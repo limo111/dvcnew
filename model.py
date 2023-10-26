@@ -33,13 +33,13 @@ models = [
     ])),
     ("CNN", Sequential([
         Embedding(1000, 32, input_length=16),
-        Conv1D(64, 3, activation='relu'),
+        Conv1D(128, 3, activation='relu'),
         GlobalMaxPooling1D(),
         Dense(1, activation='sigmoid')
     ])),
     ("LSTM", Sequential([
         Embedding(1000, 32, input_length=16),
-        LSTM(64),
+        LSTM(100),
         Dense(1, activation='sigmoid')
     ])),
     ("GlobalAveragePooling1D", Sequential([
@@ -57,7 +57,7 @@ all_model_results = []
 
 for name, model in models:
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    model.fit(train_pad, training_labels, validation_data=(test_pad, test_labels), epochs=30, batch_size=32, verbose=0)
+    model.fit(train_pad, training_labels, validation_data=(test_pad, test_labels), epochs=35, batch_size=32, verbose=0)
     loss, accuracy = model.evaluate(test_pad, test_labels, verbose=0)
     model_results = accuracy * 100
     all_model_results.append({"name": name, "accuracy": model_results})
